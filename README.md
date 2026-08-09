@@ -89,7 +89,7 @@ export const GIPHY_API_KEY = "YOUR_GIPHY_API_KEY";
 Start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 To create a production build:
