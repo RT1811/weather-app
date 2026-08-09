@@ -17,3 +17,10 @@ dialog {
 dialog::backdrop {
   background: rgb(0 0 0 / 50%);
 }
+
+.weather-gif {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}

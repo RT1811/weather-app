@@ -14,4 +14,15 @@ function renderWeather(weather, unit) {
     document.querySelector('#wind-speed').textContent = `Wind: ${weather.windSpeed} km/h`;
 }
 
-export {renderWeather};
+function renderWeatherGif(gifUrl) {
+    const container = document.querySelector('#weather-gif-container');
+
+    if (!gifUrl) {
+        container.innerHTML  = ""
+        return;
+    }
+
+    container.innerHTML = `<img src="${gifUrl}" alt="Weather visual" class="weather-gif">`;
+}
+
+export { renderWeather, renderWeatherGif };

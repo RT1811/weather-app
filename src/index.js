@@ -1,7 +1,8 @@
 // src/index.js
 import "./styles.css";
 import { getWeatherData, extractWeatherData } from "./weatherService.js";
-import { renderWeather } from "./render.js";
+import { renderWeather, renderWeatherGif } from "./render.js";
+import { getWeatherGif } from "./giphyService.js";
 
 let currentWeather = null;
 let currentUnit = "C";
@@ -22,6 +23,14 @@ searchForm.addEventListener('submit', async (e) => {
         renderWeather(currentWeather, currentUnit);
     } catch (error) {
         console.log(error);
+    }
+
+    try {
+        const gifUrl = await getWeatherGif(currentWeather.icon);
+        renderWeatherGif(gifUrl);
+    } catch (error) {
+        console.error('Gif fetch failed:', error);
+        renderWeatherGif(null);
     }
 });
 
