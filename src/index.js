@@ -1,18 +1,22 @@
 // src/index.js
 import "./styles.css";
-import { API_KEY } from "./config.js";
+import { getWeatherData, extractWeatherData } from "./weatherService.js";
 
-async function getWeatherData(location) {
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=metric&key=${API_KEY}&contentType=json`;
+const searchForm = document.querySelector('#search-form');
+const locationInput = document.querySelector('#location-input');
 
-    const response  = await fetch(url);
+searchForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-    if (!response.ok) {
-        throw new Error(`Weather Request Failed: ${response.status}`);
+    const location = locationInput.value.trim();
+    if (!location) return;
+
+    try {
+        const rawData = await getWeatherData(location);
+        const weather = extractWeatherData(rawData);
+        console.log(weather);
+    } catch (error) {
+        console.log(error);
     }
+});
 
-    const data = await response.json();
-    return data;
-}
-
-getWeatherData("London").then((data) => console.log(data.currentConditions));
