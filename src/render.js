@@ -1,10 +1,10 @@
-function celciusToFarenheit(celcius) {
+function celsiusToFarenheit(celcius) {
     return (9*celcius)/5 + 32;
 }
 
 function renderWeather(weather, unit) {
-    const temp = unit === "F" ? celciusToFarenheit(weather.tempC) : weather.tempC;
-    const feelsLike = unit === "F" ? celciusToFarenheit(weather.feelsLikeC) : weather.feelsLikeC;
+    const temp = unit === "F" ? celsiusToFarenheit(weather.tempC) : weather.tempC;
+    const feelsLike = unit === "F" ? celsiusToFarenheit(weather.feelsLikeC) : weather.feelsLikeC;
 
     document.querySelector('#location-name').textContent = weather.location;
     document.querySelector('#temperature').textContent = `${temp.toFixed(1)}°${unit}`;

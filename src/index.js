@@ -10,6 +10,7 @@ let currentUnit = "C";
 const searchForm = document.querySelector('#search-form');
 const locationInput = document.querySelector('#location-input');
 const unitToggle = document.querySelector('#unit-toggle');
+const loadingMessage = document.querySelector("#loading-message");
 
 searchForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -17,12 +18,17 @@ searchForm.addEventListener('submit', async (e) => {
     const location = locationInput.value.trim();
     if (!location) return;
 
+    loadingMessage.classList.remove('hidden');
+
     try {
         const rawData = await getWeatherData(location);
         currentWeather = extractWeatherData(rawData);
         renderWeather(currentWeather, currentUnit);
     } catch (error) {
         console.log(error);
+        return;
+    } finally {
+        loadingMessage.classList.add('hidden');
     }
 
     try {

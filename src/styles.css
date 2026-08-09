@@ -1,26 +1,145 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #dbeafe;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 40px 20px;
 }
 
-dialog {
-  border: none;
-  border-radius: 8px;
-  padding: 2rem;
+h1 {
+    margin-bottom: 20px;
+    color: #1e3a8a;
 }
 
-dialog::backdrop {
-  background: rgb(0 0 0 / 50%);
+/* Search */
+
+#search-form {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+#location-input {
+    width: 300px;
+
+    padding: 10px;
+
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+#search-form button,
+#unit-toggle {
+    padding: 10px 16px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #2563eb;
+    color: white;
+
+    cursor: pointer;
+}
+
+#search-form button:hover,
+#unit-toggle:hover {
+    background-color: #1d4ed8;
+}
+
+/* Loading */
+
+#loading-message {
+    margin: 20px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Weather */
+
+#weather-display {
+    width: 700px;
+    max-width: 100%;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#weather-gif-container {
+    grid-row: 1 / 8;
 }
 
 .weather-gif {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+#location-name {
+    font-size: 28px;
+}
+
+#temperature {
+    font-size: 48px;
+    font-weight: bold;
+
+    color: #2563eb;
+}
+
+#condition {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#feels-like,
+#humidity,
+#wind-speed {
+    color: #475569;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    #search-form {
+        width: 100%;
+    }
+
+    #location-input {
+        width: 100%;
+    }
+
+    #weather-display {
+        grid-template-columns: 1fr;
+    }
+
+    #weather-gif-container {
+        grid-row: auto;
+    }
 }
